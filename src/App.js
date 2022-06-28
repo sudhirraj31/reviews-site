@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import WriteReview from "./pages/WriteReview";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "baseui/button";
+import ReviewPage from "./pages/reviewPage";
 
 function App() {
   const { isAuthenticated, loginWithPopup } = useAuth0();
@@ -24,10 +25,7 @@ function App() {
               )
             }
           />
-        </Routes>
-        <Routes>
           <Route
-            exact
             path="/write-review"
             element={
               isAuthenticated ? (
@@ -37,6 +35,7 @@ function App() {
               )
             }
           />
+          <Route path="/reviews/:id" element={<ReviewPage />} />
         </Routes>
       </Layout>
     </Router>

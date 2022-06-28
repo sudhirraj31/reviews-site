@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { Card, StyledBody } from "baseui/card";
-import { Show } from "baseui/icon";
-import { FaRegThumbsUp } from "react-icons/fa";
+import { FaThumbsUp, FaRegEye } from "react-icons/fa";
 import styled from "styled-components";
 import { gql } from "graphql-request";
 import graphcms from "../API";
 
+import colors from "../config/colors";
+
 export default function Review({ review }) {
   let currentLikes = review.like;
   const [like, setLike] = useState(currentLikes);
+  const [likeIconColor, setLikeIconColor] = useState(colors.lightgrey);
   const handleLike = () => {
-    console.log("like clicked");
     // update like state
     currentLikes++;
-    setLike(currentLikes);
-    console.log(like);
     // mutation to like with particular review id
     const UPDATE_LIKE = gql`
       mutation {
@@ -34,7 +33,11 @@ export default function Review({ review }) {
         }
       }
     `;
-    graphcms.request(UPDATE_LIKE).then(graphcms.request(PUBLISH_LIKE));
+    graphcms.request(UPDATE_LIKE).then(() => {
+      graphcms.request(PUBLISH_LIKE);
+      setLike(currentLikes);
+      setLikeIconColor(colors.primary);
+    });
   };
   return (
     <Wrapper>
@@ -48,11 +51,11 @@ export default function Review({ review }) {
         <StyledBody>
           <MetaInfo>
             <MetaData>
-              <Show size={24} />
+              <FaRegEye size={24} color={colors.lightgrey} />
               <MetaSpan>{review.view}</MetaSpan>
             </MetaData>
             <MetaData onClick={handleLike}>
-              <FaRegThumbsUp size={20} />
+              <FaThumbsUp size={20} color={likeIconColor} />
               <MetaSpan>{like}</MetaSpan>
             </MetaData>
             {review.author?.username ? (

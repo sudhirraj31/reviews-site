@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default () => {
-  const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
+  const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
   return (
     <HeaderNavigation>
       <StyledNavigationList $align={ALIGN.left}>
@@ -31,7 +31,7 @@ export default () => {
           </StyledNavigationItem>
         ) : (
           <StyledNavigationItem>
-            <StyledLink onClick={() => loginWithRedirect()}>Log In</StyledLink>
+            <StyledLink onClick={() => loginWithPopup()}>Log In</StyledLink>
           </StyledNavigationItem>
         )}
       </StyledNavigationList>

@@ -31,7 +31,18 @@ const WriteReview = () => {
     // posting new review to the graphcms
     const POST_REVIEW = gql`
       mutation {
-        createReview(data: { title: "${title}", body: "${body}", view: 0, like: 0, author: {create: {email: "${user.email}", username: "${user.nickname}"}} }) {
+        createReview(data: { 
+          title: "${title}", 
+          body: "${body}", 
+          view: 0, 
+          like: 0, 
+          author: {
+            create: {
+              email: "${user.email}", 
+              username: "${user.nickname}"
+            }
+          } 
+        }){
           id
         }
       }

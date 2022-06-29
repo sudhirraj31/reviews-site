@@ -5,8 +5,10 @@ import { Button } from "baseui/button";
 
 import Layout from "./reviewer/components/Layout";
 import Home from "./reviewer/pages/home";
-import WriteReview from "./reviewer/pages/WriteReview";
-import ReviewPage from "./reviewer/pages/reviewPage";
+import WriteReview from "./reviewer/pages/createreview";
+import ReviewPage from "./reviewer/pages/reviewpage";
+import AdminDashboard from "./admin/pages/admindashboard";
+import Welcome from "./reviewer/pages/reviewerwelcome";
 
 function App() {
   const { isAuthenticated, loginWithPopup } = useAuth0();
@@ -22,7 +24,7 @@ function App() {
               isAuthenticated ? (
                 <Home />
               ) : (
-                <Button onClick={() => loginWithPopup()}>Log In</Button>
+                <Welcome loginWithPopup={loginWithPopup} />
               )
             }
           />
@@ -32,11 +34,13 @@ function App() {
               isAuthenticated ? (
                 <WriteReview />
               ) : (
-                <Button onClick={() => loginWithPopup()}>Log In</Button>
+                <Welcome loginWithPopup={loginWithPopup} />
               )
             }
           />
           <Route path="/reviews/:id" element={<ReviewPage />} />
+          {/* Admin pages */}
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </Layout>
     </Router>

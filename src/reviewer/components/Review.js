@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Card, StyledBody } from "baseui/card";
 import { FaThumbsUp, FaRegEye } from "react-icons/fa";
 import styled from "styled-components";
+
 import { gql } from "graphql-request";
-import graphcms from "../../API";
+import { graphcms } from "../../API";
 
 import colors from "../../config/colors";
 
@@ -42,7 +43,7 @@ export default function Review({ review }) {
   return (
     <Wrapper>
       <Card
-        overrides={{ Root: { style: { width: "100%" } } }}
+        overrides={{ Root: { style: { width: "70%", margin: "0 auto" } } }}
         headerImage={review.image?.url}
         title={review.title}
       >

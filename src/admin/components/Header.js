@@ -35,13 +35,6 @@ const Header = () => {
           </StyledNavigationItem>
         )}
       </StyledNavigationList>
-      <StyledNavigationList $align={ALIGN.right}>
-        <StyledNavigationItem>
-          <Link to="/write-review">
-            <Button shape={SHAPE.pill}>Write a Review</Button>
-          </Link>
-        </StyledNavigationItem>
-      </StyledNavigationList>
     </HeaderNavigation>
   );
 };

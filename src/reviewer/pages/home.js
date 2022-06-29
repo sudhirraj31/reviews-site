@@ -3,11 +3,11 @@ import { gql } from "graphql-request";
 import { useNavigate } from "react-router-dom";
 
 import Review from "../components/Review";
-import graphcms from "../../API";
+import { graphcms } from "../../API";
 
 const GET_REVIEWS = gql`
   {
-    reviews {
+    reviews(where: { approve: true }) {
       id
       title
       body
@@ -34,7 +34,6 @@ const Home = () => {
     let currentViews = review.view;
     // update view state
     currentViews++;
-    console.log(currentViews);
     // mutation to view with particular review id
     const UPDATE_VIEW = gql`
       mutation {
@@ -59,9 +58,9 @@ const Home = () => {
       navigate(`/reviews/${review.id}`);
     });
   };
-  console.log(reviews);
+
   return (
-    <div style={{ margin: "0 auto" }}>
+    <>
       {reviews.map((review) => {
         return (
           <div key={review.id} onClick={() => handleReviewClick(review)}>
@@ -69,7 +68,7 @@ const Home = () => {
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 

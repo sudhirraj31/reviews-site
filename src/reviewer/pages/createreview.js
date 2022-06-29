@@ -9,7 +9,7 @@ import { Button, SHAPE } from "baseui/button";
 // import { FileUploader } from "baseui/file-uploader";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import graphcms from "../../API";
+import { graphcms } from "../../API";
 
 const WriteReview = () => {
   const [title, setTitle] = useState("");
@@ -18,7 +18,6 @@ const WriteReview = () => {
 
   const navigate = useNavigate();
   const { user } = useAuth0();
-  console.log(user);
 
   const handleReset = () => {
     setTitle("");
@@ -35,7 +34,8 @@ const WriteReview = () => {
           title: "${title}", 
           body: "${body}", 
           view: 0, 
-          like: 0, 
+          like: 0,
+          approve: false, 
           author: {
             create: {
               email: "${user.email}", 
@@ -49,11 +49,23 @@ const WriteReview = () => {
     `;
 
     setTimeout(() => {
-      graphcms.request(POST_REVIEW).then(() => {
-        setLoading(false);
-        handleReset();
-        navigate("/");
-      });
+      graphcms
+        .request(POST_REVIEW)
+        .then((review) => {
+          graphcms.request(`
+            mutation {
+              publishReview(where: { id: "${review.createReview.id}" }) {
+                view
+              }
+            }
+          `);
+        })
+        .then(() => {
+          setLoading(false);
+          handleReset();
+          navigate("/");
+        })
+        .catch((err) => console.log(err));
     }, 1000);
   };
   return (

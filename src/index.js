@@ -13,7 +13,6 @@ const engine = new Styletron();
 const domain = "dev-2vikb2ri.us.auth0.com";
 const clientId = "M9xQUbkhBqNKO4OjjdIFOjNzyEW4I8vC";
 const root = ReactDOM.createRoot(document.getElementById("root"));
-console.log(window.location.origin);
 root.render(
   <StyletronProvider value={engine} debug={debug} debugAfterHydration>
     <Auth0Provider

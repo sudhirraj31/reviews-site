@@ -9,7 +9,7 @@ import { Button, SHAPE } from "baseui/button";
 // import { FileUploader } from "baseui/file-uploader";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import graphcms from "../API";
+import graphcms from "../../API";
 
 const WriteReview = () => {
   const [title, setTitle] = useState("");

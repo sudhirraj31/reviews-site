@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { gql } from "graphql-request";
-import Review from "../components/Review";
-
-import graphcms from "../API";
 import { useNavigate } from "react-router-dom";
+
+import Review from "../components/Review";
+import graphcms from "../../API";
 
 const GET_REVIEWS = gql`
   {

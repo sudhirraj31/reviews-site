@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "graphql-request";
 import { useParams } from "react-router-dom";
-import graphcms from "../API";
+
+import graphcms from "../../API";
 import Review from "../components/Review";
 
 function ReviewPage() {

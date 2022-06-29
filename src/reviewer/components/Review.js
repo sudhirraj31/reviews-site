@@ -3,9 +3,9 @@ import { Card, StyledBody } from "baseui/card";
 import { FaThumbsUp, FaRegEye } from "react-icons/fa";
 import styled from "styled-components";
 import { gql } from "graphql-request";
-import graphcms from "../API";
+import graphcms from "../../API";
 
-import colors from "../config/colors";
+import colors from "../../config/colors";
 
 export default function Review({ review }) {
   let currentLikes = review.like;

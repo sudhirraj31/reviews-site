@@ -1,11 +1,12 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/home";
-import Layout from "./components/Layout";
-import WriteReview from "./pages/WriteReview";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "baseui/button";
-import ReviewPage from "./pages/reviewPage";
+
+import Layout from "./reviewer/components/Layout";
+import Home from "./reviewer/pages/home";
+import WriteReview from "./reviewer/pages/WriteReview";
+import ReviewPage from "./reviewer/pages/reviewPage";
 
 function App() {
   const { isAuthenticated, loginWithPopup } = useAuth0();

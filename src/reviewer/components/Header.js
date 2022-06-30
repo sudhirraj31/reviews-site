@@ -14,7 +14,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Header = () => {
   const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
   const handleLogout = () => {
-    logout();
+    logout({ returnTo: window.location.origin });
     localStorage.removeItem("token");
   };
   return (

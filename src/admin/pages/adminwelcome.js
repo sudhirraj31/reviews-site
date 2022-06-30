@@ -2,15 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "baseui/button";
 import AppColors from "../../config/colors";
-import { useNavigate } from "react-router-dom";
 
-function ReviewerWelcome({ loginWithPopup }) {
-  const navigate = useNavigate();
-  const handleAdminLogin = () => {
-    loginWithPopup().then(() => {
-      navigate("/admin");
-    });
-  };
+function AdminWelcome({ loginWithPopup }) {
   return (
     <Wrapper>
       <Main>
@@ -18,20 +11,17 @@ function ReviewerWelcome({ loginWithPopup }) {
           <h1>Welcome!</h1>
         </WelcomeTitle>
         <WelcomeMessage>
-          Write your thoughts about any product. It'll help others.
+          Here you can approve or reject posted reviews by reviewers.
         </WelcomeMessage>
         <Action>
-          <Button onClick={() => loginWithPopup()}>Login as Reviewer</Button>
-        </Action>
-        <Action>
-          <Button onClick={handleAdminLogin}>Login as Admin</Button>
+          <Button onClick={() => loginWithPopup()}>Login as Admin</Button>
         </Action>
       </Main>
     </Wrapper>
   );
 }
 
-export default ReviewerWelcome;
+export default AdminWelcome;
 
 const Wrapper = styled.div`
   height: 80vh;

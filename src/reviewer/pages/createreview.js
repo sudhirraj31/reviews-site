@@ -18,6 +18,7 @@ const WriteReview = () => {
 
   const navigate = useNavigate();
   const { user } = useAuth0();
+  console.log(user);
 
   const handleReset = () => {
     setTitle("");
@@ -37,9 +38,8 @@ const WriteReview = () => {
           like: 0,
           approve: false, 
           author: {
-            create: {
-              email: "${user.email}", 
-              username: "${user.nickname}"
+            connect: {
+              id: "${localStorage.getItem("token")}"
             }
           } 
         }){
@@ -47,7 +47,6 @@ const WriteReview = () => {
         }
       }
     `;
-
     setTimeout(() => {
       graphcms
         .request(POST_REVIEW)
@@ -55,7 +54,7 @@ const WriteReview = () => {
           graphcms.request(`
             mutation {
               publishReview(where: { id: "${review.createReview.id}" }) {
-                view
+                id
               }
             }
           `);
@@ -69,7 +68,7 @@ const WriteReview = () => {
     }, 1000);
   };
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ margin: "50px auto", width: "70%", textAlign: "center" }}>
       <FormControl>
         <Input
           type="text"

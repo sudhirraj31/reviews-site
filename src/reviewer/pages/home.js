@@ -58,7 +58,6 @@ const Home = () => {
       navigate(`/reviews/${review.id}`);
     });
   };
-
   return (
     <>
       {reviews.map((review) => {

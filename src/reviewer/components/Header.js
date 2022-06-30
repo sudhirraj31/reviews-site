@@ -13,6 +13,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
   const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
+  const handleLogout = () => {
+    logout();
+    localStorage.removeItem("token");
+  };
   return (
     <HeaderNavigation>
       <StyledNavigationList $align={ALIGN.left}>
@@ -27,7 +31,7 @@ const Header = () => {
             <span style={{ margin: "0 30px", fontWeight: "bold" }}>
               Hello, {user.name}
             </span>
-            <StyledLink onClick={() => logout()}>Log out</StyledLink>
+            <StyledLink onClick={handleLogout}>Log out</StyledLink>
           </StyledNavigationItem>
         ) : (
           <StyledNavigationItem>

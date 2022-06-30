@@ -14,6 +14,10 @@ const GET_REVIEWS = gql`
         id
         url
       }
+      author {
+        id
+        username
+      }
     }
   }
 `;

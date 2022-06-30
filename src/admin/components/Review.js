@@ -56,6 +56,7 @@ const Review = ({ reviews, review, setReviews }) => {
         title={review.title}
       >
         <StyledBody>{review.body}</StyledBody>
+        <StyledBody>by - {review.author.username}</StyledBody>
         <Separator></Separator>
         <StyledAction>
           <ActionButton>

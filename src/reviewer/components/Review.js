@@ -10,6 +10,7 @@ import colors from "../../config/colors";
 
 export default function Review({ review }) {
   let currentLikes = review.like;
+  console.log(currentLikes);
   const [like, setLike] = useState(currentLikes);
   const [likeIconColor, setLikeIconColor] = useState(colors.lightgrey);
   const handleLike = (e) => {

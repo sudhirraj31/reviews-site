@@ -18,7 +18,6 @@ const WriteReview = () => {
 
   const navigate = useNavigate();
   const { user } = useAuth0();
-  console.log(user);
 
   const handleReset = () => {
     setTitle("");

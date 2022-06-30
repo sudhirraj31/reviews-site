@@ -1,36 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { gql } from "graphql-request";
 import { useNavigate } from "react-router-dom";
 
 import Review from "../components/Review";
 import { graphcms } from "../../API";
 
-const GET_REVIEWS = gql`
-  {
-    reviews(where: { approve: true }) {
-      id
-      title
-      body
-      image {
-        id
-        url
-      }
-      view
-      like
-      author {
-        username
-      }
-    }
-  }
-`;
-
-const Home = () => {
-  const [reviews, setReviews] = useState([]);
+const Home = ({ reviews }) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    graphcms.request(GET_REVIEWS).then((data) => setReviews(data.reviews));
-  }, []);
   const handleReviewClick = (review) => {
+    navigate(`/reviews/${review.id}`);
     let currentViews = review.view;
     // update view state
     currentViews++;
@@ -55,7 +33,6 @@ const Home = () => {
     `;
     graphcms.request(UPDATE_VIEW).then(() => {
       graphcms.request(PUBLISH_VIEW);
-      navigate(`/reviews/${review.id}`);
     });
   };
   return (

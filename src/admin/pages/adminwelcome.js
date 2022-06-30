@@ -32,6 +32,9 @@ const Wrapper = styled.div`
 
 const Main = styled.div`
   text-align: center;
+  padding: 40px 80px;
+  border: #888888 1px solid;
+  box-shadow: 5px 5px #888888;
 `;
 
 const WelcomeTitle = styled.div`

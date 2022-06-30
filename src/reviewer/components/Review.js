@@ -12,7 +12,8 @@ export default function Review({ review }) {
   let currentLikes = review.like;
   const [like, setLike] = useState(currentLikes);
   const [likeIconColor, setLikeIconColor] = useState(colors.lightgrey);
-  const handleLike = () => {
+  const handleLike = (e) => {
+    e.stopPropagation();
     // update like state
     currentLikes++;
     // mutation to like with particular review id
@@ -84,6 +85,7 @@ const MetaInfo = styled.div`
 const MetaData = styled.div`
   display: flex;
   justify-content: center;
+  cursor: pointer;
 `;
 const MetaSpan = styled.span`
   margin-left: 10px;

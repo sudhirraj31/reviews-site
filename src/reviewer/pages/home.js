@@ -62,7 +62,11 @@ const Home = () => {
     <>
       {reviews.map((review) => {
         return (
-          <div key={review.id} onClick={() => handleReviewClick(review)}>
+          <div
+            key={review.id}
+            style={{ cursor: "pointer" }}
+            onClick={() => handleReviewClick(review)}
+          >
             <Review review={review} />
           </div>
         );

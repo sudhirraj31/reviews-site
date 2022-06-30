@@ -10,8 +10,10 @@ import { Button, SHAPE } from "baseui/button";
 
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
@@ -21,29 +23,35 @@ const Header = () => {
     <HeaderNavigation>
       <StyledNavigationList $align={ALIGN.left}>
         <StyledNavigationItem>
-          <h1>Review Site</h1>
+          <h1 onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+            Review Site
+          </h1>
         </StyledNavigationItem>
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.center} />
       <StyledNavigationList $align={ALIGN.right}>
         {isAuthenticated ? (
           <StyledNavigationItem>
-            <span style={{ margin: "0 30px", fontWeight: "bold" }}>
-              Hello, {user.name}
-            </span>
-            <StyledLink onClick={handleLogout}>Log out</StyledLink>
+            <div onClick={handleLogout} style={{ cursor: "pointer" }}>
+              <span style={{ margin: "0 30px", fontWeight: "bold" }}>
+                Hello, {user.nickname}
+              </span>
+              Log out
+            </div>
           </StyledNavigationItem>
         ) : (
           <StyledNavigationItem>
-            <StyledLink onClick={() => loginWithPopup()}>Log In</StyledLink>
+            <div onClick={() => loginWithPopup()} style={{ cursor: "pointer" }}>
+              Log In
+            </div>
           </StyledNavigationItem>
         )}
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.right}>
         <StyledNavigationItem>
-          <Link to="/write-review">
-            <Button shape={SHAPE.pill}>Write a Review</Button>
-          </Link>
+          <Button shape={SHAPE.pill} onClick={() => navigate("/write-review")}>
+            Write a Review
+          </Button>
         </StyledNavigationItem>
       </StyledNavigationList>
     </HeaderNavigation>

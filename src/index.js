@@ -12,10 +12,8 @@ const debug =
 
 const engine = new Styletron();
 
-const domain = "dev-2vikb2ri.us.auth0.com";
-// const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const clientId = "M9xQUbkhBqNKO4OjjdIFOjNzyEW4I8vC";
-// const clientId = process.env.REACT_APP_AUTH0_CLIENT;
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

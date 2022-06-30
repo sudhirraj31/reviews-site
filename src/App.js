@@ -77,7 +77,6 @@ function App() {
       });
     }
   }, [isAuthenticated]);
-  console.log(reviews);
   return (
     <Router>
       <Layout>

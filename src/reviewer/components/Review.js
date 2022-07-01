@@ -44,7 +44,7 @@ export default function Review({ review }) {
   return (
     <Wrapper>
       <Card
-        overrides={{ Root: { style: { width: "70%", margin: "0 auto" } } }}
+        overrides={{ Root: { style: { width: "100%" } } }}
         headerImage={review.image?.url}
         title={review.title}
       >

@@ -41,7 +41,7 @@ const Home = ({ reviews }) => {
         return (
           <div
             key={review.id}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", width: "60%", margin: "0 auto" }}
             onClick={() => handleReviewClick(review)}
           >
             <Review review={review} />

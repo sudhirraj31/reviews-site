@@ -6,8 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 function ReviewerWelcome({ loginWithPopup }) {
   const navigate = useNavigate();
+  const handleReviewerLogin = () => {
+    loginWithPopup().then(() => {
+      localStorage.setItem("auth", true);
+      navigate("/");
+    });
+  };
   const handleAdminLogin = () => {
     loginWithPopup().then(() => {
+      localStorage.setItem("auth", true);
       navigate("/admin");
     });
   };
@@ -21,7 +28,7 @@ function ReviewerWelcome({ loginWithPopup }) {
           Write your thoughts about any product. It'll help others.
         </WelcomeMessage>
         <Action>
-          <Button onClick={() => loginWithPopup()}>Login as Reviewer</Button>
+          <Button onClick={handleReviewerLogin}>Login as Reviewer</Button>
         </Action>
         <Action>
           <Button onClick={handleAdminLogin}>Login as Admin</Button>

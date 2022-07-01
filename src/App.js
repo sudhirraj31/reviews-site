@@ -16,7 +16,7 @@ import AdminWelcome from "./admin/pages/adminwelcome";
 
 const GET_REVIEWS = gql`
   {
-    reviews(where: { approve: true }) {
+    reviews(where: { approve: true }, orderBy: approve_DESC) {
       id
       title
       body
@@ -46,12 +46,13 @@ function App() {
     {
       author(where: { email: "${user.email}" }) {
         id
+        username
         isAdmin
       }
     }
     `;
       graphcms.request(GET_AUTHOR).then((res) => {
-        if (res.author?.isAdmin) setIsAdmin(true);
+        if (res.author?.isAdmin) localStorage.setItem("admin", true);
         if (res.author === null) {
           const POST_AUTHOR = gql`
             mutation {
@@ -64,15 +65,18 @@ function App() {
             mutation {
               publishAuthor(where: { id: "${res.createAuthor.id}" }){
                 id
+                username
               }
             }
           `;
             graphcms.request(PUBLISH_AUTHOR).then((res) => {
               localStorage.setItem("token", res.publishAuthor.id);
+              localStorage.setItem("username", res.publishAuthor.username);
             });
           });
         } else {
           localStorage.setItem("token", res.author.id);
+          localStorage.setItem("username", res.author.username);
         }
       });
     }
@@ -85,7 +89,7 @@ function App() {
             exact
             path="/"
             element={
-              isAuthenticated ? (
+              localStorage.getItem("auth") ? (
                 <Home reviews={reviews} />
               ) : (
                 <ReviewerWelcome loginWithPopup={loginWithPopup} />
@@ -95,7 +99,7 @@ function App() {
           <Route
             path="/write-review"
             element={
-              isAuthenticated ? (
+              localStorage.getItem("auth") ? (
                 <WriteReview />
               ) : (
                 <ReviewerWelcome loginWithPopup={loginWithPopup} />
@@ -110,7 +114,7 @@ function App() {
           <Route
             path="/admin"
             element={
-              isAdmin ? (
+              localStorage.getItem("admin") ? (
                 <AdminDashboard />
               ) : (
                 <AdminWelcome loginWithPopup={loginWithPopup} />

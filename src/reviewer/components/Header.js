@@ -15,7 +15,7 @@ const Header = () => {
   const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
-    localStorage.removeItem("token");
+    localStorage.clear();
   };
   return (
     <HeaderNavigation>
@@ -28,11 +28,11 @@ const Header = () => {
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.center} />
       <StyledNavigationList $align={ALIGN.right}>
-        {isAuthenticated ? (
+        {localStorage.getItem("auth") ? (
           <StyledNavigationItem>
             <div onClick={handleLogout} style={{ cursor: "pointer" }}>
               <span style={{ margin: "0 30px", fontWeight: "bold" }}>
-                Hello, {user.nickname}
+                Hello, {localStorage.getItem("username")}
               </span>
               Log out
             </div>

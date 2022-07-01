@@ -6,7 +6,7 @@ import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Textarea } from "baseui/textarea";
 import { Button, SHAPE } from "baseui/button";
-// import { FileUploader } from "baseui/file-uploader";
+import { FileUploader } from "baseui/file-uploader";
 
 import { graphcms } from "../../API";
 
@@ -14,7 +14,6 @@ const WriteReview = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const handleReset = () => {
@@ -84,7 +83,6 @@ const WriteReview = () => {
           onChange={(e) => setBody(e.target.value)}
         />
       </FormControl>
-      {/* <FileUploader /> */}
       {loading ? (
         <Button>Sending for review...</Button>
       ) : (

@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
   const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
+  const userName = localStorage.getItem("username");
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
     localStorage.clear();
@@ -28,12 +29,14 @@ const Header = () => {
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.center} />
       <StyledNavigationList $align={ALIGN.right}>
-        {localStorage.getItem("auth") ? (
+        {isAuthenticated ? (
           <StyledNavigationItem>
             <div onClick={handleLogout} style={{ cursor: "pointer" }}>
-              <span style={{ margin: "0 30px", fontWeight: "bold" }}>
-                Hello, {localStorage.getItem("username")}
-              </span>
+              {userName ? (
+                <span style={{ margin: "0 30px", fontWeight: "bold" }}>
+                  Hello, {userName}
+                </span>
+              ) : null}
               Log out
             </div>
           </StyledNavigationItem>

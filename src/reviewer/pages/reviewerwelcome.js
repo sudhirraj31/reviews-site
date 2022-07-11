@@ -8,13 +8,11 @@ function ReviewerWelcome({ loginWithPopup }) {
   const navigate = useNavigate();
   const handleReviewerLogin = () => {
     loginWithPopup().then(() => {
-      localStorage.setItem("auth", true);
       navigate("/");
     });
   };
   const handleAdminLogin = () => {
     loginWithPopup().then(() => {
-      localStorage.setItem("auth", true);
       navigate("/admin");
     });
   };

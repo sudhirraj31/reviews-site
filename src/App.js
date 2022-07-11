@@ -89,7 +89,7 @@ function App() {
             exact
             path="/"
             element={
-              localStorage.getItem("auth") ? (
+              isAuthenticated ? (
                 <Home reviews={reviews} />
               ) : (
                 <ReviewerWelcome loginWithPopup={loginWithPopup} />
@@ -99,7 +99,7 @@ function App() {
           <Route
             path="/write-review"
             element={
-              localStorage.getItem("auth") ? (
+              isAuthenticated ? (
                 <WriteReview />
               ) : (
                 <ReviewerWelcome loginWithPopup={loginWithPopup} />

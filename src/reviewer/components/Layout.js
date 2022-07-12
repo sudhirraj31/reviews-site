@@ -16,13 +16,10 @@ export default Layout;
 
 //components styling
 const Main = styled.main`
-  postion: fixed;
-  height: calc(100%-185px);
+  margin: 0 auto;
+  top: 80px;
+  position: fixed;
   width: 100%;
-
-  @media (min-width: 700px) {
-    margin: 0 auto;
-    padding: 0;
-    width: 100%;
-  }
+  height: calc(100% - 80px);
+  overflow-y: scroll;
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Card, StyledBody } from "baseui/card";
 import styled from "styled-components";
 
@@ -12,7 +12,6 @@ export default function Review({ review }) {
         <CardTitle>{review.title}</CardTitle>
         <CardBody>{review.body}</CardBody>
       </CardBodyWrapper>
-      <Separator></Separator>
       <MetaData review={review} />
     </Card>
   );
@@ -36,8 +35,4 @@ const CardTitle = styled.h1`
 `;
 const CardBody = styled.p`
   color: #000;
-`;
-const Separator = styled.div`
-  border-bottom: #ccc 1px solid;
-  margin-bottom: 10px;
 `;

@@ -26,6 +26,10 @@ const GET_REVIEWS = gql`
       }
       view
       like
+      likedbyusers {
+        id
+        email
+      }
       author {
         username
       }
